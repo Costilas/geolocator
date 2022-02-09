@@ -9,7 +9,7 @@ services:
       context: ./
       dockerfile: nginx/Dockerfile
     volumes:
-      - ./app:/var/www/hmtl/app
+      - ./app:/var/www/html/app
     ports:
       - "8090:80"
 
@@ -36,6 +36,5 @@ services:
 
   adminer:
     image: adminer
-    restart: always
     ports:
       - "8095:8080"
