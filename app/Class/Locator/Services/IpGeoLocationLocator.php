@@ -16,14 +16,13 @@ class IpGeoLocationLocator implements Locator
     public function locate(Ip $ip): ?Location
     {
 
-        $url = 'http://ipwhois.app/json/' . $ip->getIp() . "?objects=country,region,city";
+        $url = 'http://ipwhois.app/json/' . $ip->getIp() . "?objects=country,region,city,latitude,longitude";
         $response = $this->client->get($url);
         $response = json_decode($response, true);
-
         if(empty($response['country'])) {
             return null;
         }
 
-        return new Location($response['country'], $response['region'], $response['city']);
+        return new Location($response['country'], $response['region'], $response['city'], $response['latitude'], $response['longitude']);
     }
 }
