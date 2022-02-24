@@ -1,6 +1,3 @@
-
-
-
 <!doctype html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
     <head>
@@ -28,20 +25,22 @@
         </script>
         <title>Document</title>
     </head>
-    <body style="background: beige">
+    <body style="background: beige; text-align: center">
+        <?php if(!empty($_POST['ip'])) : ?>
         <div style="text-align: center">
-            <h1> Results: </h1>
-            <p>Country: <?= $country; ?></p>
-            <p>Region: <?= $region; ?></p>
-            <p>City: <?= $city; ?></p>
+            <?php if(isset($country)&&isset($region)&&isset($city)) :?>
+                <h1> Results: </h1>
+                <p>Country: <?= $country; ?></p>
+                <p>Region: <?= $region; ?></p>
+                <p>City: <?= $city; ?></p>
+                <div id="map" style="width: 600px; height: 400px; margin: 0 auto;"></div>
+            <?php else:  ?>
+                <h1>Something wrong: check entered ip address - it should be in "xxx.xxx.xxx.xxx" format.</h1>
+            <?php endif; ?>
         </div>
 
 
-
-        <div id="map" style="width: 600px; height: 400px; margin: 0 auto;">
-
-        </div>
-
+        <?php else: echo '<h1> Enter IP: </h1>';  endif;?>
         <form method="post" action="index.php" style="margin: 30px; text-align: center">
             <input type="text" name="ip">
             <button type="submit"> Send </button>

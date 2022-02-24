@@ -22,7 +22,7 @@ class IpInfoLocator implements Locator
         $response = $this->client->getCurl($url);
         $response = json_decode($response, true);
 
-        if (empty($response['country_name'])) {
+        if ($response['country_name']=='-'||empty($response['country_name'])) {
             return null;
         }
 

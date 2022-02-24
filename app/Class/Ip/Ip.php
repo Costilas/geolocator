@@ -19,7 +19,6 @@ final class Ip
         if(empty($ip)) {
             throw new InvalidArgumentException('Empty IP');
         }
-
         if(filter_var($ip, FILTER_VALIDATE_IP) === false) {
             throw new InvalidArgumentException("Invalid IP: $ip");
         }

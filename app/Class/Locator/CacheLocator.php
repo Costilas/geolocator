@@ -26,10 +26,11 @@ class CacheLocator implements Locator
 
         if($location === null) {
             $location = $this->next->locate($ip);
-            echo "</br>Live result:</br>";
-            $this->cache->set($hashedName, $location, $this->ttl);
+            if($location !== null){
+                $this->cache->set($hashedName, $location, $this->ttl);
+                echo "</br>Live result:</br>";
+            }
         }
-
         return $location;
     }
 
